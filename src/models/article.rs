@@ -1,4 +1,4 @@
-use crate::models::{img::Image, Tag};
+use crate::models::{img::Image, tag::Tag};
 use serde::{Deserialize, Serialize};
 use time::Date;
 

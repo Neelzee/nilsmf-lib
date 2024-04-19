@@ -1,9 +1,2 @@
-use serde::{Deserialize, Serialize};
-
+/// Contains models used in nilsmf services
 mod models;
-
-#[derive(Serialize, Deserialize)]
-pub struct Wrapper<T> {
-    iid: String,
-    content: T,
-}

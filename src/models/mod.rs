@@ -1,23 +1,20 @@
 use serde::{Deserialize, Serialize};
 
+/// Contains Article and ArticleTable
 pub mod article;
+
+/// Contains Image and ImageTable
 pub mod img;
+
+/// Contains Tag, TagTable and TagsTable
+pub mod tag;
+
+/// Contains User and Email
 pub mod user;
 
-#[derive(Debug, Serialize, Deserialize)]
-pub struct Tag {
-    pub tag: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct TagTable {
-    pub iid: usize,
-    pub tag: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct TagsTable {
-    pub iid: usize,
-    pub tag_id: usize,
-    pub content_id: usize,
+#[derive(Serialize, Deserialize)]
+/// Wrapper for data being sent
+pub struct Wrapper<T> {
+    iid: String,
+    content: T,
 }

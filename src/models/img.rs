@@ -1,4 +1,4 @@
-use crate::models::Tag;
+use crate::models::tag::Tag;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
