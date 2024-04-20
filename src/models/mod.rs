@@ -12,6 +12,9 @@ pub mod tag;
 /// Contains User and Email
 pub mod user;
 
+/// Contains Version and Runtime
+pub mod meta;
+
 #[derive(Serialize, Deserialize)]
 /// Wrapper for data being sent
 pub struct Wrapper<T> {
