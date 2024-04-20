@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.1] - 2024-04-20
+
+### Changed
+
+- Corrected visibility in `models`
+
 ## [1.1.0] - 2024-04-20
 
 ### Added
