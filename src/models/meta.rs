@@ -1,9 +1,10 @@
 use core::fmt::Display;
 use serde::{Deserialize, Serialize};
 use time::Date;
+use utoipa::ToSchema;
 
 /// Semver
-#[derive(Debug, Eq, PartialEq, Clone, Copy, Deserialize, Serialize)]
+#[derive(Debug, Eq, PartialEq, Clone, Copy, Deserialize, Serialize, ToSchema)]
 pub struct Version {
     major: usize,
     minor: usize,
