@@ -2,8 +2,8 @@ use core::fmt::Display;
 use serde::{Deserialize, Serialize};
 use time::Date;
 
-#[derive(Debug, Eq, PartialEq, Deserialize, Serialize)]
 /// Semver
+#[derive(Debug, Eq, PartialEq, Clone, Copy, Deserialize, Serialize)]
 pub struct Version {
     major: usize,
     minor: usize,
@@ -28,7 +28,7 @@ impl Display for Version {
     }
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, PartialEq, Eq, Deserialize, Serialize)]
 /// Runtime of a service
 pub struct Runtime {
     date: Date,

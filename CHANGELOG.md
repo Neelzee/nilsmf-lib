@@ -1,5 +1,12 @@
 # Changelog
 
+## [[1.1.2]] - 2024-04-30
+
+### Added
+
+- Add `Clone`, `Copy` to `meta::Version`.
+
+
 ## [1.1.1] - 2024-04-20
 
 ### Changed
@@ -35,3 +42,5 @@ _Initial release._
 [0.1.0]: https://github.com/Neelzee/nilsmf-lib/releases/tag/v0.1.0
 [1.0.0]: https://github.com/Neelzee/nilsmf-lib/releases/tag/v1.0.0
 [1.1.0]: https://github.com/Neelzee/nilsmf-lib/releases/tag/v1.1.0
+[1.1.1]: https://github.com/Neelzee/nilsmf-lib/releases/tag/v1.1.1
+[1.1.1]: https://github.com/Neelzee/nilsmf-lib/releases/tag/v1.1.2
