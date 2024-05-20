@@ -1,6 +1,5 @@
 use core::fmt::Display;
 use serde::{Deserialize, Serialize};
-use time::Date;
 use utoipa::ToSchema;
 
 /// Semver
@@ -13,7 +12,9 @@ pub struct Version {
 
 impl Version {
     #[allow(dead_code)]
-    /// Constucts a new Version
+    /**
+    Constructs a new Version
+    */
     pub fn new(major: usize, minor: usize, patch: usize) -> Self {
         Self {
             major,
@@ -32,14 +33,21 @@ impl Display for Version {
 #[derive(Debug, PartialEq, Eq, Deserialize, Serialize)]
 /// Runtime of a service
 pub struct Runtime {
-    date: Date,
+    date: String,
     time: usize,
 }
 
 impl Runtime {
     #[allow(dead_code)]
     /// Constructs a new Runtime
-    pub fn new(date: Date, time: usize) -> Self {
+    pub fn new(date: String, time: usize) -> Self {
         Self { date, time }
+    }
+
+    pub fn init() -> Self {
+        Self {
+            date: format!("{}", chrono::Local::now().format("%d.%m.%Y [%H:%M]")),
+            time: 0,
+        }
     }
 }

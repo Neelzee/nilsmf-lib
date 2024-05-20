@@ -1,5 +1,13 @@
 # Changelog
 
+## [[1.2.0]] - 2024-05-20
+
+### Changed
+
+- **Breaking**: Changed `meta::Runtime` date from `Date` to `String`
+
+
+
 ## [[1.1.3]] - 2024-04-30
 
 ### Added
@@ -52,3 +60,4 @@ _Initial release._
 [1.1.1]: https://github.com/Neelzee/nilsmf-lib/releases/tag/v1.1.1
 [1.1.2]: https://github.com/Neelzee/nilsmf-lib/releases/tag/v1.1.2
 [1.1.3]: https://github.com/Neelzee/nilsmf-lib/releases/tag/v1.1.3
+[1.2.0]: https://github.com/Neelzee/nilsmf-lib/releases/tag/v1.2.0
