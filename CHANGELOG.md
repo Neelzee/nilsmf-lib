@@ -1,11 +1,17 @@
 # Changelog
 
+## [[1.2.1]] - 2024-05-20
+
+### Changed
+
+- Added `Clone` to `meta::Runtime`
+
+
 ## [[1.2.0]] - 2024-05-20
 
 ### Changed
 
 - **Breaking**: Changed `meta::Runtime` date from `Date` to `String`
-
 
 
 ## [[1.1.3]] - 2024-04-30

@@ -30,8 +30,8 @@ impl Display for Version {
     }
 }
 
-#[derive(Debug, PartialEq, Eq, Deserialize, Serialize)]
 /// Runtime of a service
+#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize, ToSchema)]
 pub struct Runtime {
     date: String,
     time: usize,
