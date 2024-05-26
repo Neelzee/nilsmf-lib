@@ -1,5 +1,14 @@
 use anyhow::Result;
 use serde::{Deserialize, Serialize};
+use utoipa::ToSchema;
+
+#[derive(Debug, Serialize, Deserialize, ToSchema)]
+pub struct AuthUser {
+    #[schema(example = "nilsmf")]
+    id: String,
+    /// Hashed password
+    pwd: String,
+}
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct User {
@@ -7,7 +16,7 @@ pub struct User {
     iid: usize,
     /// User identity
     id: String,
-    /// Verified email
+    /// Verified emailtype = "array", items(type = "integer", format = "int32")
     email: Email,
 }
 
