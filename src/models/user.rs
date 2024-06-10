@@ -10,7 +10,7 @@ pub struct AuthUser {
     pwd: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, ToSchema)]
 pub struct User {
     /// Internal ID, used in databases
     iid: usize,
@@ -20,7 +20,7 @@ pub struct User {
     email: Email,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, ToSchema)]
 /// Email struct, an email is verified to be existing and valid.
 pub struct Email(String);
 

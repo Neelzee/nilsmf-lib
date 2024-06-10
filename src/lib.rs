@@ -1,5 +1,6 @@
 use crate::models::meta::{Runtime, Version};
 use anyhow::{Context, Result};
+use models::user::{AuthUser, Email, User};
 use utoipa::OpenApi;
 
 /// Contains models used in nilsmf services
@@ -16,13 +17,14 @@ pub mod utils;
     ),
 )]
 #[rocket::get("/")]
+#[allow(dead_code)]
 fn empty() {}
 
 #[derive(OpenApi)]
 #[openapi(
     info(description = "nilsmf-lib: Component Specification"),
     paths(empty),
-    components(schemas(Version, Runtime))
+    components(schemas(Version, Runtime, AuthUser, User, Email))
 )]
 struct ApiDoc;
 
