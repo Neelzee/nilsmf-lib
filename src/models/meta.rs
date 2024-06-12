@@ -58,7 +58,7 @@ impl Runtime {
     pub fn init() -> Self {
         Self {
             date: format!("{}", chrono::Local::now().format(DATE_FORMAT)),
-            time: 0,
+            time: Local::now().timestamp_millis() as usize,
         }
     }
 
@@ -66,7 +66,7 @@ impl Runtime {
     pub fn update_time(&self) -> Result<Self> {
         Ok(Self {
             date: self.date.clone(),
-            time: Local::now().timestamp_millis() as usize,
+            time: Local::now().timestamp_millis() as usize - self.time,
         })
     }
 }
