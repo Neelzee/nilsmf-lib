@@ -1,10 +1,9 @@
-use crate::models::tag::Tag;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Image {
     pub title: String,
-    pub tags: Vec<Tag>,
+    pub tags: Vec<String>,
     pub img: Vec<u32>,
 }
 

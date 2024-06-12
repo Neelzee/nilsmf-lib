@@ -1,25 +1,16 @@
-use crate::models::{img::Image, tag::Tag};
+use crate::models::img::Image;
+use getset::Getters;
 use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, ToSchema, Getters)]
 pub struct Article {
-    pub created: String,
-    pub article_id: usize,
-    pub images: Vec<Image>,
-    pub tags: Vec<Tag>,
-}
-
-#[derive(Debug, Serialize, Deserialize, ToSchema)]
-pub struct MetaArticle {
-    pub article_id: usize,
-    pub content: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct ArticleTable {
-    pub created: String,
-    pub article_id: usize,
-    pub images_id: usize,
-    pub edited_date: Option<String>,
+    content: String,
+    #[schema(example = "11.06.24 [23:37]")]
+    created: String,
+    #[schema(example = "13.06.24 [00:06]")]
+    last_edited: Vec<String>,
+    tags: Vec<String>,
+    author: String,
+    images: Vec<Image>,
 }
