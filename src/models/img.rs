@@ -1,10 +1,13 @@
+use getset::Getters;
 use serde::{Deserialize, Serialize};
+use utoipa::ToSchema;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, ToSchema, Getters)]
 pub struct Image {
-    pub title: String,
-    pub tags: Vec<String>,
-    pub img: Vec<u32>,
+    title: String,
+    tags: Vec<String>,
+    img: Vec<u32>,
+    alt: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
