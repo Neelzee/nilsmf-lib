@@ -3,7 +3,7 @@ use getset::Getters;
 use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 
-#[derive(Debug, Serialize, Deserialize, ToSchema, Getters)]
+#[derive(Debug, Serialize, Deserialize, ToSchema, Getters, Default)]
 pub struct Article {
     content: String,
     #[schema(example = "11.06.24 [23:37]")]
