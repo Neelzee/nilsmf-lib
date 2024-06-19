@@ -1,6 +1,8 @@
 use crate::models::meta::{Runtime, Version};
 use anyhow::{Context, Result};
 use models::user::{AuthUser, Email, User};
+use std::fs::File;
+use std::io::prelude::*;
 use utoipa::OpenApi;
 
 /// Contains models used in nilsmf services
@@ -38,4 +40,11 @@ pub fn generate_specification() -> Result<String> {
         .context("Failed serializing serde_json::Value to serde_yaml::Value")?,
     )
     .context("Failed deserializing serde_yaml::Value to String")
+}
+
+#[test]
+fn temp() -> Result<()> {
+    let mut file = File::create("specification.yaml")?;
+    file.write_all(generate_specification()?.as_bytes())?;
+    Ok(())
 }
