@@ -1,4 +1,4 @@
-use diesel::prelude::*;
+use diesel::{dsl::Nullable, prelude::*, sql_types::Float};
 use getset::Getters;
 use serde::{Deserialize, Serialize};
 
@@ -16,16 +16,6 @@ diesel::table! {
         content -> Text,
         description -> Text
     }
-
-    meta_article (iid) {
-        iid -> Int4,
-        title -> Text,
-        created_date -> Varchar,
-        created_time -> Varchar,
-        last_edit_date -> Varchar,
-        last_edit_time -> Varchar,
-        tags -> Varchar[],
-    }
 }
 
 #[derive(Debug, Serialize, Deserialize, Getters, Queryable, Selectable)]
@@ -42,8 +32,23 @@ pub struct MetaArticleTable {
     content_table_id: u64, // <- ArticleTable
 }
 
-/// Table containing edit information of an article
-#[derive(Debug, Serialize, Deserialize, Getters)]
+diesel::table! {
+    meta_article (iid) {
+        iid -> Int4,
+        title -> Text,
+        created_date -> VarChar,
+        created_time -> VarChar,
+        last_edit_date -> VarChar,
+        last_edit_time -> VarChar,
+        tags -> Array<VarChar>,
+        author_id -> Int4,
+        content_table_id -> Int4,
+    }
+
+}
+
+#[derive(Debug, Serialize, Deserialize, Getters, Queryable, Selectable)]
+#[diesel(table_name = meta_article_edit)]
 pub struct MetaArticleEditTable {
     iid: u64,
     edit_date: String,
@@ -52,18 +57,41 @@ pub struct MetaArticleEditTable {
     changes_id: u64, // <- ArticleEditTable
 }
 
+diesel::table! {
+    meta_article_edit (iid) {
+        iid -> Int4,
+        edit_date -> VarChar,
+        edit_time -> VarChar,
+        article_id -> Int4,
+        changes_id -> Int4,
+    }
+}
+
 /// Table containing edit changes of an article
-#[derive(Debug, Serialize, Deserialize, Getters)]
+#[derive(Debug, Serialize, Deserialize, Getters, Queryable, Selectable)]
+#[diesel(table_name = article_edit)]
 pub struct ArticleEditTable {
     iid: u64,
     new_content: String,
-    add_images: u64,
-    rm_images: u64,
+    add_images: Vec<u64>,
+    rm_images: Vec<u64>,
     add_tags: Vec<String>,
     rm_tags: Vec<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize, Getters)]
+diesel::table! {
+    article_edit (iid) {
+        iid -> Int4,
+        new_content -> VarChar,
+        add_images -> Array<Int4>,
+        rm_images -> Array<Int4>,
+        add_tags -> Array<VarChar>,
+        rm_tags -> Array<VarChar>,
+    }
+}
+
+#[derive(Debug, Serialize, Deserialize, Getters, Queryable, Selectable)]
+#[diesel(table_name = image)]
 pub struct ImageTable {
     iid: u64,
     title: String,
@@ -72,17 +100,52 @@ pub struct ImageTable {
     tags: Vec<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize, Getters)]
+diesel::table! {
+    image (iid) {
+        iid -> Int4,
+        title -> VarChar,
+        alt -> VarChar,
+        src -> Binary,
+        tags -> Array<VarChar>
+    }
+}
+
+#[derive(Debug, Serialize, Deserialize, Getters, Queryable, Selectable)]
+#[diesel(table_name = image_article)]
 pub struct ImageArticleTable {
     iid: u64,
     image_id: u64,
     article_id: u64,
+    width: Option<f64>,
+    height: Option<f64>,
+    opacity: Option<f64>,
 }
 
-#[derive(Debug, Serialize, Deserialize, Getters)]
+diesel::table! {
+    image_article (iid) {
+        iid -> Int4,
+        image_id -> Int4,
+        article_id -> Int4,
+        width -> Nullable<Float>,
+        height -> Nullable<Float>,
+        opacity -> Nullable<Float>,
+    }
+}
+
+#[derive(Debug, Serialize, Deserialize, Getters, Queryable, Selectable)]
+#[diesel(table_name = author)]
 pub struct AuthorTable {
     iid: u64,
     uid: u64,
     name: String,
     email: String,
+}
+
+diesel::table! {
+    author (iid) {
+        iid -> Int4,
+        uid -> Int4,
+        name -> VarChar,
+        email -> VarChar,
+    }
 }
